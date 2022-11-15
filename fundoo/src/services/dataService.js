@@ -27,3 +27,8 @@ export const trashNotes = (inputTitleDes) => {
     let response = axios.post("http://fundoonotes.incubation.bridgelabz.com/api/notes/trashNotes",inputTitleDes,headerConfig)
     return response
 }
+
+export const updateNotes = (inputTitleDes) => {
+    let response = axios.post("http://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes",inputTitleDes,headerConfig)
+    return response
+}

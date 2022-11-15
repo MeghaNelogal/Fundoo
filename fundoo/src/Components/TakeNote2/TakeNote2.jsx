@@ -62,12 +62,12 @@ function TakeNote2(props) {
     const ArchiveNote = () => {
         setInput(prevState => ({
             ...prevState,
-            isArchived : true
+            isArchived: true
         }))
-        console.log( "Archived")
+        console.log("Archived")
     }
 
-   
+
 
     return (
 
@@ -93,7 +93,7 @@ function TakeNote2(props) {
                             </Tooltip>
 
                             <Tooltip title="trash">
-                               <DeleteOutlined></DeleteOutlined>
+                                <DeleteOutlined></DeleteOutlined>
                             </Tooltip>
 
                             <Tooltip title="Background options ">

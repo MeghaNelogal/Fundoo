@@ -10,13 +10,18 @@ import SettingsOutlined from '@mui/icons-material/SettingsOutlined';
 import AppsOutlined from '@mui/icons-material/AppsOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
-function Header() {
+function Header(props) {
+    
+    const openMenu = () => {
+       props.listenToHeader()
+    }
+
     return (
 
         <div>
             <div className="header">
                 <div className="header1">
-                    <MenuIcon> </MenuIcon>
+                    <MenuIcon onClick={openMenu}> </MenuIcon>
                     <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="logo" />
                     <Link href="#" underline="hover"> {'Keep'}</Link>
                 </div>
