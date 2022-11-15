@@ -111,16 +111,16 @@ function TakeNote3(props) {
             <div className="takenote3">
                 <div className="takenote3a" style={{ backgroundColor: props.note.color }}>
 
-                    <div className="note2a" onClick={() => handleOpen(props.note)} >
+                    <div className="note3a" onClick={() => handleOpen(props.note)} >
                         {/* <p>Greeting Message!!</p> */}
                         <p >{props.note.title}</p>
-                        <IconButton className="icons">
+                        <IconButton className="iconspin">
                             <Tooltip title="Pin">
                                 <PushPinOutlinedIcon></PushPinOutlinedIcon>
                             </Tooltip>
                         </IconButton>
                     </div>
-                    <div className="note2b" onClick={() => handleOpen(props.note)}>
+                    <div className="note3b" onClick={() => handleOpen(props.note)}>
                         {/* <p>Hello megha, How are You??</p> */}
                         <p>{props.note.description}</p>
                     </div>

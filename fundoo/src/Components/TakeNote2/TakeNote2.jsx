@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { addNotes } from '../../services/dataService';
 import ColorPopper from '../Pages/ColorPoppup/ColorPoppup';
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
+import PersonAddAltOutlined from '@mui/icons-material/PersonAddAltOutlined';
 
 
 function TakeNote2(props) {
@@ -92,8 +93,8 @@ function TakeNote2(props) {
                                 <AddAlertOutlinedIcon></AddAlertOutlinedIcon>
                             </Tooltip>
 
-                            <Tooltip title="trash">
-                                <DeleteOutlined></DeleteOutlined>
+                            <Tooltip title="Collaborator">
+                                <PersonAddAltOutlined></PersonAddAltOutlined>
                             </Tooltip>
 
                             <Tooltip title="Background options ">

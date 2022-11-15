@@ -5,8 +5,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-   
+    justify-content: center; 
 }
 
 .takenote3a{
@@ -30,3 +29,26 @@
     display: flex;  
     justify-content: space-between;
 }
+.note3a{
+    width: 100%;
+    height: 35%;
+    border: 0px solid yellow;
+    display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-left: 5%;
+}
+.note3b{
+    display: flex;
+     width: 90%;
+     height: 35%;
+     border: 0px solid blue;
+     margin-left: 5%;
+ }
+ .iconspin{
+    position: relative;
+    right: 15px;
+ }
+ .iconpart{
+    margin-left: 5%;
+ }

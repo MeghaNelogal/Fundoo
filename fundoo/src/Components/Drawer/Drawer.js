@@ -20,6 +20,12 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import { Tooltip } from '@mui/material';
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 
 const drawerWidth = 240;
 
@@ -83,7 +89,7 @@ export default function MiniDrawer(props) {
                         <ListItemButton>
                            <ListItemIcon>
                                <Tooltip title="Notes">
-                                    <ArchiveOutlinedIcon></ArchiveOutlinedIcon>
+                                   <LightbulbOutlined />
                                 </Tooltip>
                             </ListItemIcon>
                             <ListItemText primary="Notes" />
@@ -94,7 +100,7 @@ export default function MiniDrawer(props) {
                         <ListItemButton>
                            <ListItemIcon>
                                <Tooltip title="Reminders">
-                                    <ArchiveOutlinedIcon></ArchiveOutlinedIcon>
+                                    <NotificationsOutlinedIcon />
                                 </Tooltip>
                             </ListItemIcon>
                             <ListItemText primary="Reminders" />
@@ -105,7 +111,7 @@ export default function MiniDrawer(props) {
                         <ListItemButton>
                            <ListItemIcon>
                                <Tooltip title="Edit labels">
-                                    <ArchiveOutlinedIcon></ArchiveOutlinedIcon>
+                                    <EditOutlinedIcon />
                                 </Tooltip>
                             </ListItemIcon>
                             <ListItemText primary="Edit labels" />
@@ -127,7 +133,7 @@ export default function MiniDrawer(props) {
                         <ListItemButton>
                            <ListItemIcon>
                                <Tooltip title="Trash">
-                                    <ArchiveOutlinedIcon></ArchiveOutlinedIcon>
+                                   <DeleteOutlined />
                                 </Tooltip>
                             </ListItemIcon>
                             <ListItemText primary="Trash" />
