@@ -1,4 +1,4 @@
-
+/* 
 .Maindiv {
     height: 85vh;
     width: 35vw;
@@ -26,14 +26,7 @@
     border: 0px solid blue;
     top: -158px;
 } 
-/* 
-.textfield input{
-    width: 70%;
-    height: 60px;
-    position: relative;
-    top: 25%;
-    border: 1px solid blue;
-} */
+
 .textfield{
     display: flex;
     flex-direction: column;
@@ -65,12 +58,12 @@
     position: relative;
     top: 40px;
 }
-.button1{
+ .button1{
     display: flex;
     justify-content: center;
     width: 50%;
     border: 0px solid blue;
-}
+} 
 .button2SI button{
     width: 90px;
     height: 48px;
@@ -97,4 +90,11 @@
 
 .b2 { 
     background-color: transparent; 
-}
+}  */
+
+
+/* @media screen and (min-width: 320px) and (max-width: 480px) {
+    .MainBox{
+        width: 100vw;
+    }
+} */

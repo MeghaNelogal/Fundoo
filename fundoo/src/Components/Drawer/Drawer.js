@@ -19,13 +19,15 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
-import { Tooltip } from '@mui/material';
+import { StepConnector, Tooltip } from '@mui/material';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
+import { connect } from "react-redux";
+
 
 const drawerWidth = 240;
 
@@ -69,15 +71,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function MiniDrawer(props) {
+function MiniDrawer(props) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const selectOne = (event) => {
-        props.listenToDrawer(event)
-
+    const selectOne = (choice) => {
+        props.listenToDrawer(choice)
+        props.dispatch({
+            type: `${choice}`
+        })
     }
-
-
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -85,21 +87,21 @@ export default function MiniDrawer(props) {
 
             <Drawer variant="permanent" open={props.drawertoggle}>
                 <List>
-                    <ListItem onClick={() =>selectOne("Notes")} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={() => selectOne("Notes")} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton>
-                           <ListItemIcon>
-                               <Tooltip title="Notes">
-                                   <LightbulbOutlined />
+                            <ListItemIcon>
+                                <Tooltip title="Notes">
+                                    <LightbulbOutlined />
                                 </Tooltip>
                             </ListItemIcon>
                             <ListItemText primary="Notes" />
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem onClick={() =>selectOne("Reminders")} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={() => selectOne("Reminders")} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton>
-                           <ListItemIcon>
-                               <Tooltip title="Reminders">
+                            <ListItemIcon>
+                                <Tooltip title="Reminders">
                                     <NotificationsOutlinedIcon />
                                 </Tooltip>
                             </ListItemIcon>
@@ -107,10 +109,10 @@ export default function MiniDrawer(props) {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem onClick={() =>selectOne("Edit")} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={() => selectOne("Edit")} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton>
-                           <ListItemIcon>
-                               <Tooltip title="Edit labels">
+                            <ListItemIcon>
+                                <Tooltip title="Edit labels">
                                     <EditOutlinedIcon />
                                 </Tooltip>
                             </ListItemIcon>
@@ -118,10 +120,10 @@ export default function MiniDrawer(props) {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem onClick={() =>selectOne("Archive")} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={() => selectOne("Archive")} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton>
-                           <ListItemIcon>
-                               <Tooltip title="Archive">
+                            <ListItemIcon>
+                                <Tooltip title="Archive">
                                     <ArchiveOutlinedIcon></ArchiveOutlinedIcon>
                                 </Tooltip>
                             </ListItemIcon>
@@ -129,19 +131,20 @@ export default function MiniDrawer(props) {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem onClick={() =>selectOne("Trash")} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={() => selectOne("Trash")} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton>
-                           <ListItemIcon>
-                               <Tooltip title="Trash">
-                                   <DeleteOutlined />
+                            <ListItemIcon>
+                                <Tooltip title="Trash">
+                                    <DeleteOutlined />
                                 </Tooltip>
                             </ListItemIcon>
                             <ListItemText primary="Trash" />
                         </ListItemButton>
                     </ListItem>
                 </List>
-                <Divider />
+
             </Drawer>
         </Box>
     );
 }
+export default connect()(MiniDrawer);

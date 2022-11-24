@@ -18,8 +18,83 @@ import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { makeStyles } from '@mui/styles';
+
+const useStyle = makeStyles({
+    takenote3: {
+        width: '18vw',
+        height: '25vh',
+        flexWrap: 'wrap',
+        border: '0px solid red',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-Evenly',
+        alignItems: 'center',
+        // position: 'relative',
+        marginLeft: '65%',
+        // marginRight: '30%',
+        // marginBottom: '100%',
+
+    },
+    takenote3a: {
+        width: '90%',
+        height: '70%',
+        boxSizing: 'border-box',
+        opacity: '1',
+        position: 'relative',
+        minHeight: '105px',
+        marginTop: '1%',
+        marginRight: '0.7%',
+        border: '0px solid blue',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        flexDirection: 'column',
+        borderRadius: '8px',
+        boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
+
+    },
+    note3a: {
+        width: '100%',
+        height: '25%',
+        border: '0px solid yellow',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginLeft: '5%',
+        marginTop: '13%',
+    },
+    note3b: {
+        display: 'flex',
+        width: '90%',
+        height: '25%',
+        alignItems: 'center',
+        border: '0px solid blue',
+        marginLeft: '5%',
+        marginBottom: '10%',
+    },
+    iconspin: {
+        position: 'relative',
+        right: '15px',
+    },
+    iconpart: {
+        height: '40%',
+        border: '0px solid maroon',
+        marginLeft: '5%',
+        marginBottom: '8%',
+    },
+    icons1: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+    ['@media only screen and (minWidth :320) and (maxWidth : 480)']: {
+        width: '100vw',
+    }
+})
+
 
 function TakeNote3(props) {
+    const classes = useStyle()
+
     const [input, setInput] = React.useState({ noteId: "", title: "", description: "", color: "" })
 
     const style = {
@@ -53,11 +128,15 @@ function TakeNote3(props) {
     const updateColor = () => {
         props.getNote()
     }
+    props.autoRefresh()
+
+
     const archiveUpdate = (id) => {
         let obj = { noteIdList: [id], isArchived: true }
         archiveNotes(obj)
             .then((response) => {
                 console.log(response)
+                props.autoRefresh()
             })
             .catch((error) => {
                 console.log(error)
@@ -107,26 +186,26 @@ function TakeNote3(props) {
 
     return (
 
-        <div>
-            <div className="takenote3">
-                <div className="takenote3a" style={{ backgroundColor: props.note.color }}>
+        <Box>
+            <Box className={classes.takenote3} >
+                <Box className={classes.takenote3a} style={{ backgroundColor: props.note.color }}>
 
-                    <div className="note3a" onClick={() => handleOpen(props.note)} >
+                    <Box className={classes.note3a} onClick={() => handleOpen(props.note)} >
                         {/* <p>Greeting Message!!</p> */}
                         <p >{props.note.title}</p>
-                        <IconButton className="iconspin">
+                        <IconButton className={classes.iconspin}>
                             <Tooltip title="Pin">
                                 <PushPinOutlinedIcon></PushPinOutlinedIcon>
                             </Tooltip>
                         </IconButton>
-                    </div>
-                    <div className="note3b" onClick={() => handleOpen(props.note)}>
+                    </Box>
+                    <Box className={classes.note3b} onClick={() => handleOpen(props.note)}>
                         {/* <p>Hello megha, How are You??</p> */}
                         <p>{props.note.description}</p>
-                    </div>
+                    </Box>
 
-                    <div className="iconpart" >
-                        <div className="icons1">
+                    <Box className={classes.iconpart} >
+                        <Box className={classes.icons1} >
                             <Tooltip title="Remaind me">
                                 <AddAlertOutlinedIcon></AddAlertOutlinedIcon>
                             </Tooltip>
@@ -152,10 +231,10 @@ function TakeNote3(props) {
                                 <MoreVertOutlinedIcon></MoreVertOutlinedIcon>
                             </Tooltip>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
 
             <Modal
                 open={open}
@@ -166,52 +245,54 @@ function TakeNote3(props) {
                 <Box sx={style} style={{ backgroundColor: props.note.color }}>
 
                     <InputBase defaultValue={input.title} onChange={takingTitle} sx={{ height: '25%', marginLeft: '3%' }} />
-                    <InputBase defaultValue={input.description} onChange={takingDes} sx={{ height: '25%', marginLeft: '3%' }} />
+                    <InputBase defaultValue={input.description} onChange={takingDes} sx={{ height: '40%', marginLeft: '3%' }} />
 
 
-                    <Box sx={{ width: '100%', height: '50%', border: '0px solid green', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-end' }}>
-                        <Tooltip title="Remaind me" sx={{ width: '5%', display: 'flex', alignItems: 'flex-start', border: '0px solid black' }}>
+                    <Box sx={{ width: '80%', marginBottom: '10px', height: '50%', border: '0px solid red', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-end' }}>
+                        <Tooltip title="Remaind me" sx={{ width: '4%', display: 'flex', alignItems: 'flex-start', border: '0px solid black' }}>
                             <AddAlertOutlinedIcon></AddAlertOutlinedIcon>
                         </Tooltip>
 
-                        <Tooltip title="trash" onClick={() => deleteNote(props.note.id)} >
+                        <Tooltip title="trash" sx={{ width: '4%' }} onClick={() => deleteNote(props.note.id)} >
                             <DeleteOutlined />
                         </Tooltip>
 
-                        <Tooltip title="Background options ">
+                        <Tooltip title="Background options">
 
                             <ColorPopper action="update" updateColor={updateColor} id={props.note.id} />
                         </Tooltip>
 
-                        <Tooltip title="Add Image ">
+                        <Tooltip title="Add Image " sx={{ width: '4%' }}>
                             <InsertPhotoOutlinedIcon></InsertPhotoOutlinedIcon>
                         </Tooltip>
 
-                        <Tooltip title="Archive " onClick={() => archiveUpdate(props.note.id)}>
+                        <Tooltip title="Archive " onClick={() => archiveUpdate(props.note.id)} sx={{ width: '4%' }}>
                             <ArchiveOutlinedIcon></ArchiveOutlinedIcon>
                         </Tooltip>
 
-                        <Tooltip title="More ">
+                        <Tooltip title="More " sx={{ width: '4%' }}>
                             <MoreVertOutlinedIcon></MoreVertOutlinedIcon>
                         </Tooltip>
 
-                        <Tooltip title="Undo ">
+                        <Tooltip title="Undo " sx={{ width: '4%' }}>
                             <UndoOutlinedIcon></UndoOutlinedIcon>
                         </Tooltip>
 
-                        <Tooltip title="Redo ">
+                        <Tooltip title="Redo " sx={{ width: '4%' }}>
                             <RedoOutlinedIcon></RedoOutlinedIcon>
                         </Tooltip>
 
-                        <Button onClick={closeButton}>
+                        <Button onClick={closeButton} sx={{ width: '20%', border: '0px solid yellow', color: 'black', position: 'relative', left: '130px', top: '10px' }}>
                             close
                         </Button >
 
                     </Box>
 
+
+
                 </Box>
             </Modal>
-        </div>
+        </Box>
     )
 }
 

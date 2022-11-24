@@ -6,9 +6,10 @@ import Header from '../Header/Header'
 import TakeNote1 from '../TakeNote1/TakeNote1'
 import TakeNote2 from '../TakeNote2/TakeNote2'
 import TakeNote3 from '../TakeNote3/TakeNote3'
+import Box from '@mui/material/Box';
 
 function Dashboard() {
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState(false) //useState have 2 parameters
     const [noteList, setNoteList] = useState([])
     const [drawertoggle, setDrawerToggle] = useState(false)
     const [choice, setChoice] = useState('Notes')
@@ -27,30 +28,35 @@ function Dashboard() {
 
     const listenToNote2 = () => {
         setToggle(false)
+
+    }
+
+    const autoRefresh = () => {
+        getNote()
     }
 
     const getNote = () => {
         getNoteList().then((response) => {
             let filterNotes = []
             if (choice === "Notes") {
-                filterNotes=response.data.data.data.filter((notes)=>{
-                    if(notes.isArchived===false && notes.isDeleted===false){
+                filterNotes = response.data.data.data.filter((notes) => {
+                    if (notes.isArchived === false && notes.isDeleted === false) {
                         return notes
                     }
                 })
             }
             else if (choice === "Archive") {
-                filterNotes=response.data.data.data.filter((notes)=>{
-                    if(notes.isArchived===true && notes.isDeleted===false){
+                filterNotes = response.data.data.data.filter((notes) => {
+                    if (notes.isArchived === true && notes.isDeleted === false) {
                         return notes
                     }
                 })
             }
             else if (choice === "Trash") {
-                filterNotes=response.data.data.data.filter((notes)=>{
-                    if(notes.isArchived===false && notes.isDeleted===true){
+                filterNotes = response.data.data.data.filter((notes) => {
+                    if (notes.isArchived === false && notes.isDeleted === true) {
                         return notes
-                        console.log(notes,"deletedNotes")
+                        console.log(notes, "deletedNotes")
                     }
                 })
             }
@@ -69,24 +75,24 @@ function Dashboard() {
 
     return (
 
-        <div>
+        <Box>
 
             <Header listenToHeader={listenToHeader} />
             <MiniDrawer drawertoggle={drawertoggle} listenToDrawer={listenToDrawer} />
 
-            <div>
+            <Box>
                 {
                     toggle ? <TakeNote2 listenToNote2={listenToNote2} /> : <TakeNote1 listenToNote1={listenToNote1} />
                 }
-                <div style={{ display: 'flex', flexDirection: 'row', border: '0px solid red', flexWrap: 'wrap', width: '80vw', height: '60vh', marginLeft: '80px', marginTop: '40px' }}>
+                <Box style={{ display: 'flex', flexDirection: 'row', border: '0px solid red', flexWrap: 'wrap', width: '80vw', height: '60vh', marginLeft: '80px', marginTop: '40px' }}>
                     {
-                        noteList.map((note) => (<TakeNote3 note={note} getNote={getNote} />))
+                        noteList.map((note) => (<TakeNote3 note={note} getNote={getNote} autoRefresh={autoRefresh} />))
                     }
-                </div>
+                </Box>
 
-            </div>
+            </Box>
 
-        </div>
+        </Box>
     )
 }
 
